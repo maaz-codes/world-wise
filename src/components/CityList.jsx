@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from './CityList.module.css';
 import Spinner from './Spinner';
 import CityItem from './CityItem';
@@ -15,5 +16,21 @@ function CityList({ cities, isLoading }) {
         </ul>
     )
 }
+
+// prop types //
+
+CityList.propTypes = {
+    cities: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        cityName: PropTypes.string.isRequired,
+        emoji: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        position: PropTypes.shape({
+            lat: PropTypes.number.isRequired,
+            lng: PropTypes.number.isRequired,
+        }).isRequired,
+    })).isRequired,
+    isLoading: PropTypes.bool.isRequired,
+};
 
 export default CityList
